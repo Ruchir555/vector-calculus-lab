@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Learn vector calculus identities through interactive fields, sliders, worked steps, and geometric intuition.">
+  <title>Vector Calculus Lab</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="math.js" defer></script><script src="lessons.js" defer></script><script src="app.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#lesson">Skip to lesson</a>
+<header><a class="brand" href="#gradient"><span class="logo">∇</span> VECTOR CALCULUS LAB</a><span class="header-note">Build intuition. Then read the identity.</span><a class="repo" href="https://github.com/Ruchir555/vector-calculus-lab">View code ↗</a></header>
+<div class="layout">
+  <aside><div class="eyebrow">YOUR FIELD GUIDE</div><p class="sidebar-intro">Sixteen small experiments.<br>One idea at a time.</p><nav id="chapters" aria-label="Lessons"></nav><div class="sidebar-foot">Cartesian coordinates · smooth fields<br>Blue ⊙: +z &nbsp; Orange ⊗: −z</div></aside>
+  <main id="lesson">
+    <div class="lesson-top"><div><p class="eyebrow" id="section"></p><h1 id="title"></h1><p class="subtitle" id="tag"></p></div><div class="step-count" id="step"></div></div>
+    <div class="formula-card"><div class="formula" id="formula"></div><div class="types" id="types"></div></div>
+    <p class="intuition" id="intuition"></p>
+    <section class="experiment" aria-label="Interactive experiment">
+      <div class="experiment-top"><h2>Make it move</h2><button id="reset" type="button">Reset experiment</button></div>
+      <p id="example" class="example"></p>
+      <div class="controls">
+        <label>a <output id="a-value"></output><input id="a" aria-label="Coefficient a" type="range" min="-2" max="2" step="0.05" value="1"></label>
+        <label>b <output id="b-value"></output><input id="b" aria-label="Coefficient b" type="range" min="-2" max="2" step="0.05" value="0.7"></label>
+        <label>z slice <output id="z-value"></output><input id="z" aria-label="Z slice" type="range" min="-1.5" max="1.5" step="0.05" value="0"></label>
+        <label id="r-control">Probe half-width r <output id="r-value"></output><input id="r" aria-label="Probe half-width" type="range" min="0.15" max="1" step="0.05" value="0.5"></label>
+      </div>
+      <div class="plot-options"><label>Left panel <select id="view"><option value="source">Field being differentiated</option><option value="lhs">Left-hand side result</option></select></label><label><input id="arrows" type="checkbox" checked>Show arrows</label><label><input id="contours" type="checkbox" checked>Show contours</label></div>
+      <div class="plots">
+        <figure><figcaption><span id="left-title"></span><span class="pill" id="left-type"></span></figcaption><canvas id="left" width="600" height="440" tabindex="0" aria-label="Left field plot. Click to move the probe. Arrow keys move the probe."></canvas><div class="plot-key" id="left-key"></div></figure>
+        <figure><figcaption><span id="right-title">Right-hand side sum</span><span class="pill" id="right-type"></span></figcaption><canvas id="right" width="600" height="440" tabindex="0" aria-label="Right field plot. Click to move the probe. Arrow keys move the probe."></canvas><div class="plot-key" id="right-key"></div></figure>
+      </div>
+      <p class="caption">Click either plot to move the probe. Arrow lengths use a fixed scale (0.18 coordinate units per field unit), capped for readability. A grey ring marks a capped arrow. Dot/cross size shows the z component. Colours rescale per panel; compare the numerical values below.</p>
+      <fieldset id="terms"><legend>Build the right-hand side · switch contributions on and off</legend><div id="term-options"></div></fieldset>
+      <div class="readouts" aria-live="polite">
+        <div><small>PROBE (x, y, z)</small><strong id="point"></strong></div>
+        <div><small>LEFT-HAND SIDE</small><strong id="lhs"></strong></div>
+        <div><small>DISPLAYED RHS</small><strong id="rhs"></strong></div>
+        <div><small>FULL EQUATION RESIDUAL</small><strong id="residual"></strong></div>
+      </div>
+      <p id="numeric-note" class="numeric-note">Readouts use central finite differences. Small residuals are numerical error, not a failure of the identity. The full residual includes all terms, even hidden ones.</p>
+      <div id="integrals" class="integrals"></div>
+    </section>
+    <div class="notes"><section class="notice"><h2>What to look for</h2><p id="observe"></p></section><section class="trap"><h2>A common confusion</h2><p id="trap"></p></section></div>
+    <details class="derivation"><summary>Connect the picture to the algebra</summary><ol id="proof"></ol></details>
+    <section class="challenge"><span class="eyebrow">PREDICT BEFORE YOU REVEAL</span><h2 id="question"></h2><details><summary>Show explanation</summary><p id="answer"></p></details></section>
+    <div class="bottom-nav"><button id="previous" type="button">← Previous lesson</button><span id="position"></span><button id="next" type="button">Next lesson →</button></div>
+    <footer>2D plots are slices of 3D fields. Every derivative uses all three coordinates. Scalar colour maps are values, not literal terrain heights. Identities assume the required smoothness; integral theorems also require suitable regions and orientations.</footer>
+  </main>
+</div>
+<noscript>This interactive guide requires JavaScript. You can read the identity sheet and learning guide in the GitHub repository.</noscript>
+</body></html>
