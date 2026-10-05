@@ -127,6 +127,8 @@ function draw(){
   panel($('left'),leftFn,leftType,model.background,'left-key',false);
   panel($('right'),selected,outputType,outputType==='vector'?model.background:null,'right-key');
   $('point').textContent=fmt(probe);$('lhs').textContent=lhs===null?'Excluded / undefined':fmt(lhs);
+  const sourceValue=safe(model.source,probe);
+  $('source-value').textContent=sourceValue===null?'Excluded / undefined':fmt(sourceValue);
   $('rhs').textContent=displayed===null?'Excluded / undefined':fmt(displayed);
   const error=invalid?null:norm(minus(lhs,full));
   $('residual').textContent=invalid?'Excluded / undefined':error<1e-8?'≈ 0':error.toExponential(2);
