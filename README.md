@@ -15,6 +15,28 @@ open `index.html` directly in your browser. No installation is required.
 
 ![Gradient, divergence, and curl visual overview](overview.svg)
 
+## Download the proof atlas
+
+### [Vector Calculus: An Identity and Proof Atlas (PDF)](docs/vector-calculus-atlas.pdf)
+
+**57 numbered identities and theorem statements**, each with an index-notation
+or component proof, plus exact diagrams and worked examples. The catalogue covers
+delta/epsilon algebra, products and quotients, directional derivatives, dyads,
+Laplacians and commutation, radial fields and point sources, integral theorems,
+Green identities, and potential conditions. Assumptions appear alongside the rules.
+
+The examples include point-mass gravity, a uniform massive sphere, near-Earth
+gravity, electrostatics, fluid rotation and shear, diffusion, and electromagnetic
+waves. The potential chapter explains **∂P/∂y = ∂Q/∂x**, constructs a potential,
+compares paths when the condition fails, and treats a vortex on a punctured plane.
+
+The site now has **22 interactive lessons**, including gravity, electric sources,
+straight shear flow, and two experiments devoted to the mixed-partial condition.
+The full [identity catalogue](IDENTITIES.md) also contains the proofs as text.
+
+PDF source: [LaTeX](docs/vector-calculus-atlas.tex). Rebuild with
+`python scripts/build_atlas.py` (NumPy, Matplotlib and pdfLaTeX required).
+
 ## A learning sequence that builds intuition
 
 1. **Gradient:** scalar values become local uphill arrows.
@@ -30,7 +52,7 @@ open `index.html` directly in your browser. No installation is required.
 Every lesson gives a geometric explanation, an adjustable example, a common
 confusion, worked algebra, and a prediction question with a revealable answer.
 The [learning guide](LEARNING_GUIDE.md) contains the complete text without JavaScript.
-The [identity sheet](IDENTITIES.md) is a compact reference.
+The [identity catalogue](IDENTITIES.md) includes the complete numbered proof reference.
 
 ## What you can manipulate
 
@@ -92,8 +114,9 @@ on pushes and pull requests.
 
 ## Accuracy and scope
 
-This guide teaches a representative set of standard identities; it is not an
-exhaustive vector-calculus textbook. The differential operators use central
+The atlas provides a comprehensive standard Cartesian repertoire; further
+identities can be derived from it. The interactive lessons illustrate selected
+identities and physical applications. The differential operators use central
 finite differences with step 0.0002. Tests compare against analytic polynomial
 derivatives and check all examples at multiple 3D points and parameter values.
 Small residuals reflect truncation and roundoff. Example checks illustrate

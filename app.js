@@ -10,7 +10,7 @@ const sy=y=>H-pad-(y+extent)/(2*extent)*(H-2*pad);
 const fmt=x=>{if(Array.isArray(x))return '('+x.map(fmt).join(', ')+')';return Math.abs(x)<1e-7?'0':Math.abs(x)<0.001?x.toExponential(2):x.toFixed(3);};
 const norm=x=>typeof x==='number'?Math.abs(x):Math.hypot(...x);
 const minus=(x,y)=>typeof x==='number'?x-y:VC.sub(x,y);
-function safe(fn,p){if(model.singular&&Math.hypot(p[0],p[1])<0.22)return null;try{const v=fn(p);return (typeof v==='number'?Number.isFinite(v):v.every(Number.isFinite))?v:null;}catch{return null;}}
+function safe(fn,p){if(model.singular&&Math.hypot(...(model.singularSphere?p:p.slice(0,2)))<0.22)return null;try{const v=fn(p);return (typeof v==='number'?Number.isFinite(v):v.every(Number.isFinite))?v:null;}catch{return null;}}
 function reset(){a.value=1;b.value=0.7;z.value=0;r.value=0.5;probe=[0.45,0.35,0];$('view').value='source';$('arrows').checked=true;$('contours').checked=true;enabled=model.rhs.map(()=>true);buildTerms();draw();}
 let group='';
 lessons.forEach((lesson,i)=>{
@@ -93,7 +93,8 @@ function panel(canvas,fn,type,background,key,overlayGradient=false){
   if($('arrows').checked&&(type==='vector'||overlayGradient)){
     for(let x=-1.8;x<=1.81;x+=.3)for(let y=-1.8;y<=1.81;y+=.3){const p=[x,y,probe[2]],v=safe(type==='vector'?fn:q=>VC.grad(fn,q),p);if(v===null)continue;arrow(ctx,x,y,v[0],v[1]);symbol(ctx,x,y,v[2]);}
   }
-  if(model.singular){ctx.fillStyle='#e3e4dd';ctx.strokeStyle='#a0a59a';ctx.beginPath();ctx.ellipse(sx(0),sy(0),.22*(W-2*pad)/4,.22*(H-2*pad)/4,0,0,2*Math.PI);ctx.fill();ctx.stroke();ctx.fillStyle='#7e877c';ctx.fillText('hole',sx(0)-11,sy(0)+4);}
+  const holeRadius=model.singularSphere?Math.sqrt(Math.max(0,.22**2-probe[2]**2)):.22;
+  if(model.singular&&holeRadius>0){ctx.fillStyle='#e3e4dd';ctx.strokeStyle='#a0a59a';ctx.beginPath();ctx.ellipse(sx(0),sy(0),holeRadius*(W-2*pad)/4,holeRadius*(H-2*pad)/4,0,0,2*Math.PI);ctx.fill();ctx.stroke();ctx.fillStyle='#7e877c';ctx.fillText('hole',sx(0)-11,sy(0)+4);}
   if(model.probe){
     ctx.strokeStyle='#c48b34';ctx.lineWidth=2;ctx.setLineDash([]);
     const R=Number(r.value);
@@ -112,7 +113,7 @@ function panel(canvas,fn,type,background,key,overlayGradient=false){
 function draw(){
   const A=Number(a.value),B=Number(b.value);probe[2]=Number(z.value);model=lessons[index].build(A,B);
   for(const el of [a,b,z,r])$(el.id+'-value').textContent=Number(el.value).toFixed(2);
-  a.disabled=model.singular;
+  a.disabled=!!model.disableA;b.disabled=!!model.disableB;
   $('example').textContent=model.example;$('r-control').hidden=!model.probe;
   const lhs=safe(model.lhs,probe),all=model.rhs.map(t=>safe(t.fn,probe));
   const invalid=lhs===null||all.some(v=>v===null),full=invalid?null:sum(all);
@@ -138,7 +139,7 @@ function draw(){
   }else if(model.probe){
     const R=Number(r.value),kind=model.probe,boundary=VC.boundary(model.F,probe,R,kind),density=kind==='flux'?p=>VC.div(model.F,p):p=>VC.curl(model.F,p)[2],interior=VC.area(density,probe,R);
     $('integrals').innerHTML='<strong>'+ (kind==='flux'?'Outward boundary flux':'Counterclockwise boundary circulation')+':</strong> '+fmt(boundary)+' &nbsp; = &nbsp; <strong>Area integral of '+(kind==='flux'?'div F':'(curl F)z')+':</strong> '+fmt(interior)+'<br>Area = '+fmt(4*R*R)+' · boundary integral / area = '+fmt(boundary/(4*R*R))+'. Integrals use midpoint quadrature; this linear example is exact up to roundoff.';
-  }else $('integrals').replaceChildren();
+  }else if(model.info)$('integrals').textContent=model.info(probe);else $('integrals').replaceChildren();
 }
 for(const input of [a,b,z,r])input.addEventListener('input',draw);
 for(const id of ['arrows','contours','view'])$(id).addEventListener('change',draw);

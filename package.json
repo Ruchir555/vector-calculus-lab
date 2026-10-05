@@ -1,6 +1,6 @@
 {
   "name": "vector-calculus-lab",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "private": true,
   "description": "Interactive vector calculus identities with geometric explanations",
   "scripts": { "test": "node --test math.test.cjs", "serve": "python -m http.server 8000" },

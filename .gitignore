@@ -2,3 +2,10 @@ node_modules/
 __pycache__/
 *.pyc
 .DS_Store
+
+# Atlas build intermediates
+docs/*.aux
+docs/*.log
+docs/*.out
+docs/*.toc
+tmp/

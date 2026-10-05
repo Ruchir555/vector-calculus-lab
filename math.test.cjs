@@ -61,3 +61,39 @@ test('vortex has nonzero circulation independently of radius',()=>{
     close(integral,2*Math.PI*b,1e-10);
   }
 });
+test('potential construction matches both mixed partials and path integrals',()=>{
+  const model=lessons.find(l=>l.id==='conservative').build(1,1);
+  const p=[.6,-.4,.8];close(M.grad(model.background,p),model.source(p));
+  close(M.d(q=>model.source(q)[0],p,1),2*p[0]+2*p[1]);
+  close(M.d(q=>model.source(q)[1],p,0),2*p[0]+2*p[1]);
+  let diagonal=0,edge=0;const n=2000;
+  for(let i=0;i<n;i++){const t=(i+.5)/n;diagonal+=M.dot(model.source([t,t,0]),[1,1,0])/n;edge+=model.source([t,0,0])[0]/n+model.source([1,t,0])[1]/n;}
+  close(diagonal,3,1e-6);close(edge,3,1e-6);
+});
+test('failed condition gives independently computed unequal path work',()=>{
+  const a=.6,b=-.7,F=lessons.find(l=>l.id==='failed-condition').build(a,b).source;
+  let first=0,second=0;const n=100;
+  for(let i=0;i<n;i++){const t=(i+.5)/n;first+=(F([t,0,0])[0]+F([1,t,0])[1])/n;second+=(F([0,t,0])[1]+F([t,1,0])[0])/n;}
+  close(first,a+b,1e-12);close(second,a-b,1e-12);
+});
+test('uniform sphere matches potential, interior density, continuity and exterior flux',()=>{
+  const model=lessons.find(l=>l.id==='gravity-sphere').build(1,0),mass=1.1,R=1.4;
+  for(const p of [[.2,.3,.4],[2,0,.3]])close(model.source(p),M.scale(M.grad(model.background,p),-1),1e-7);
+  close(M.div(model.source,[0,0,0]),-3*mass/R**3,1e-10);
+  close(M.div(model.source,[2,1,.5]),0,1e-7);
+  close(model.source([R-1e-9,0,0]),model.source([R+1e-9,0,0]),1e-8);
+  close(model.background([R-1e-9,0,0]),model.background([R+1e-9,0,0]),1e-8);
+  const radial=model.source([2,0,0])[0];close(4*Math.PI*4*radial,-4*Math.PI*mass,1e-10);
+});
+test('point gravity requires full 3D divergence and inward source sign',()=>{
+  const model=lessons.find(l=>l.id==='gravity-point').build(1,0),p=[1,0,0];
+  close(model.source(p),[-1.1,0,0]);close(M.div(model.source,p),0,5e-7);
+  const planar=M.d(q=>model.source(q)[0],p,0)+M.d(q=>model.source(q)[1],p,1);
+  close(planar,1.1,5e-7);close(M.d(q=>model.source(q)[2],p,2),-1.1,3e-7);
+});
+test('smooth electric cloud gives correct field, total-charge limit and curl',()=>{
+  const model=lessons.find(l=>l.id==='electrostatics').build(-1.3,0),s=.7,p=[.5,.3,-.2];
+  close(model.source(p),M.scale(M.grad(model.background,p),-1),1e-7);close(M.curl(model.source,p),[0,0,0],1e-7);
+  const radius=100;const flux=4*Math.PI*radius**2*model.source([radius,0,0])[0];
+  close(flux,-1.3*radius**3/(radius**2+s*s)**1.5,1e-12);close(flux,-1.3,1e-4);
+});

@@ -1,22 +1,18 @@
-# Vector Calculus: A Visual Learning Guide
+# Vector Calculus Lab: learning guide
 
-Use the live lab to move the parameters for each example. Start with the meaning, predict a change, then use the algebra to explain it.
+[Open the interactive lessons](https://ruchir555.github.io/vector-calculus-lab/). [Download the proof atlas](docs/vector-calculus-atlas.pdf).
 
 ## 1. Gradient
 
-**∇f = (∂f/∂x, ∂f/∂y, ∂f/∂z)**
-
-Type: scalar → vector.
+∇f = (∂f/∂x, ∂f/∂y, ∂f/∂z)
 
 Imagine f as height. The gradient points towards the steepest increase. Its magnitude is the steepest slope, not the height itself.
 
-**Experiment:** f = a x² + b y² + ½xy + 0.2z²
-
-Change a or b to turn the bowl into a saddle. Click a point: the arrow should cross the local contour at a right angle. At a stationary point the gradient vanishes even if the height is nonzero.
+**What to look for:** Change a or b to turn the bowl into a saddle. Click a point: the arrow should cross the local contour at a right angle. At a stationary point the gradient vanishes even if the height is nonzero.
 
 **Common confusion:** A gradient is not a path and not a velocity by definition. The arrows are a field of local slopes. The plot shows its x–y components; the readout also includes z.
 
-**Worked argument:**
+**Worked steps:**
 
 1. A small displacement gives Δf ≈ ∇f · Δr.
 2. Along a unit direction u, the slope is ∇f · u.
@@ -24,27 +20,19 @@ Change a or b to turn the bowl into a saddle. Click a point: the arrow should cr
 
 **Predict:** If you double f everywhere, what happens to its gradient?
 
-<details><summary>Explanation</summary>
-
-Its gradient doubles. The contour shapes stay the same, but their values and slopes change.
-
-</details>
+**Explanation:** Its gradient doubles. The contour shapes stay the same, but their values and slopes change.
 
 ## 2. Divergence
 
-**∇·F = ∂Fₓ/∂x + ∂Fᵧ/∂y + ∂Fz/∂z**
-
-Type: vector → scalar.
+∇·F = ∂Fₓ/∂x + ∂Fᵧ/∂y + ∂Fz/∂z
 
 Put a tiny box around a point. Divergence asks whether more field flows out than in, divided by the box volume. A fast uniform flow still has zero divergence.
 
-**Experiment:** F = (ax − by, bx + ay, 0); div F = 2a
-
-a controls expansion; b controls rotation. Set a = 0 and increase b: the arrows rotate, but there is no net outward flux. The orange square is a finite area probe.
+**What to look for:** a controls expansion; b controls rotation. Set a = 0 and increase b: the arrows rotate, but there is no net outward flux. The orange square is a finite area probe.
 
 **Common confusion:** Divergence is not the arrow length. It measures how the field changes across opposite faces. Here Fz = 0 and there is no z dependence, so 3D divergence equals the planar divergence.
 
-**Worked argument:**
+**Worked steps:**
 
 1. Right minus left flux ≈ (∂ₓFₓ) Δx Δy Δz.
 2. Add the other two pairs of faces.
@@ -52,27 +40,19 @@ a controls expansion; b controls rotation. Set a = 0 and increase b: the arrows 
 
 **Predict:** Can a field have both divergence and curl?
 
-<details><summary>Explanation</summary>
-
-Yes. F = (ax − by, bx + ay, 0) has divergence 2a and curl (0,0,2b). Expansion and rotation are independent here.
-
-</details>
+**Explanation:** Yes. F = (ax − by, bx + ay, 0) has divergence 2a and curl (0,0,2b). Expansion and rotation are independent here.
 
 ## 3. Curl
 
-**(∇×F)z = ∂ₓFᵧ − ∂ᵧFₓ**
-
-Type: vector → vector.
+(∇×F)z = ∂ₓFᵧ − ∂ᵧFₓ
 
 Curl measures circulation per oriented area in the small-loop limit. In this plane, positive z-curl means counterclockwise circulation when viewed from +z.
 
-**Experiment:** F = (ax − by, bx + ay, 0); curl F = (0,0,2b)
-
-Set b = 0 and vary a: expansion has no curl. Set a = 0 and change the sign of b: circulation reverses. A blue dot means towards you (+z); a cross means away (−z).
+**What to look for:** Set b = 0 and vary a: expansion has no curl. Set a = 0 and change the sign of b: circulation reverses. A blue dot means towards you (+z); a cross means away (−z).
 
 **Common confusion:** Curved arrows are not enough to establish nonzero curl. Curl is local, and its direction follows the right-hand rule. For rigid rotation, angular velocity is half the curl.
 
-**Worked argument:**
+**Worked steps:**
 
 1. For a small counterclockwise rectangle, bottom plus top contributions give −∂ᵧFₓ times area.
 2. Right plus left contributions give ∂ₓFᵧ times area.
@@ -80,27 +60,19 @@ Set b = 0 and vary a: expansion has no curl. Set a = 0 and change the sign of b:
 
 **Predict:** For F = (−by, bx, 0), is the curl b or 2b?
 
-<details><summary>Explanation</summary>
-
-It is (0,0,2b). Both velocity gradients contribute. The rigid-body angular velocity is b along z.
-
-</details>
+**Explanation:** It is (0,0,2b). Both velocity gradients contribute. The rigid-body angular velocity is b along z.
 
 ## 4. Laplacian
 
-**∇·(∇f) = ∇²f**
-
-Type: scalar → vector → scalar.
+∇·(∇f) = ∇²f
 
 The Laplacian sums the curvature in each coordinate direction. Positive values mean the local neighbour average exceeds the centre value, in the small-neighbourhood limit.
 
-**Experiment:** f = a x² + b y² + ½xy + 0.2z²; ∇²f = 2a + 2b + 0.4
-
-Change a and b independently. A saddle can have zero Laplacian when positive and negative curvatures cancel. The small z curvature in this example adds 0.4.
+**What to look for:** Change a and b independently. A saddle can have zero Laplacian when positive and negative curvatures cancel. The small z curvature in this example adds 0.4.
 
 **Common confusion:** Zero Laplacian does not mean flat or constant. For example x² − y² is harmonic but has a nonzero gradient away from the origin.
 
-**Worked argument:**
+**Worked steps:**
 
 1. ∇f = (fₓ,fᵧ,fz).
 2. Taking divergence gives fₓₓ + fᵧᵧ + fzz.
@@ -108,27 +80,19 @@ Change a and b independently. A saddle can have zero Laplacian when positive and
 
 **Predict:** What is ∇²(x² − y²)?
 
-<details><summary>Explanation</summary>
-
-2 − 2 = 0. The two curvatures cancel, even though the surface is a saddle.
-
-</details>
+**Explanation:** 2 − 2 = 0. The two curvatures cancel, even though the surface is a saddle.
 
 ## 5. Curl of a gradient
 
-**∇×(∇f) = 0**
-
-Type: scalar → vector → vector.
+∇×(∇f) = 0
 
 A smooth height function cannot keep increasing as you walk around a tiny closed loop and return to your starting point. The local circulation of its gradient cancels.
 
-**Experiment:** f = a x² + b y² + ½xy + 0.2z²
-
-Make the contours into a saddle. The gradient arrows change substantially, while every component of their curl stays zero (apart from numerical roundoff).
+**What to look for:** Make the contours into a saddle. The gradient arrows change substantially, while every component of their curl stays zero (apart from numerical roundoff).
 
 **Common confusion:** The identity requires continuous second partial derivatives. The reverse statement, curl-free implies a global scalar potential, needs domain conditions too.
 
-**Worked argument:**
+**Worked steps:**
 
 1. The z component is ∂ₓ(fᵧ) − ∂ᵧ(fₓ).
 2. For a C² scalar field, fᵧₓ = fₓᵧ.
@@ -136,27 +100,19 @@ Make the contours into a saddle. The gradient arrows change substantially, while
 
 **Predict:** Does ∇×∇f = 0 mean ∇f itself is zero?
 
-<details><summary>Explanation</summary>
-
-No. A nonconstant smooth potential usually has a nonzero gradient. Its curl is zero, not the gradient.
-
-</details>
+**Explanation:** No. A nonconstant smooth potential usually has a nonzero gradient. Its curl is zero, not the gradient.
 
 ## 6. Divergence of a curl
 
-**∇·(∇×A) = 0**
-
-Type: vector → vector → scalar.
+∇·(∇×A) = 0
 
 Flux generated by a smooth curl has no net source. Contributions cancel through paired mixed partial derivatives. This is a local differential statement.
 
-**Experiment:** A = (ayz, bxz, xy); curl A = ((1−b)x, (a−1)y, (b−a)z)
-
-Here the x–y projection can appear to expand. Move the z slice and inspect the full vector: the z derivative balances the planar divergence. A 2D picture alone can be misleading.
+**What to look for:** Here the x–y projection can appear to expand. Move the z slice and inspect the full vector: the z derivative balances the planar divergence. A 2D picture alone can be misleading.
 
 **Common confusion:** Do not calculate only ∂ₓFₓ + ∂ᵧFᵧ for a 3D field. The missing ∂zFz can be exactly the term that cancels the apparent source.
 
-**Worked argument:**
+**Worked steps:**
 
 1. Expand the six terms: ∂ₓ∂ᵧAz − ∂ₓ∂zAᵧ + ∂ᵧ∂zAₓ − ∂ᵧ∂ₓAz + ∂z∂ₓAᵧ − ∂z∂ᵧAₓ.
 2. Pair equal mixed partials with opposite signs.
@@ -164,27 +120,19 @@ Here the x–y projection can appear to expand. Move the z slice and inspect the
 
 **Predict:** Can the x–y projection of a divergence-free field look like a source?
 
-<details><summary>Explanation</summary>
-
-Yes. Its planar divergence can be balanced by variation of the out-of-plane component with z.
-
-</details>
+**Explanation:** Yes. Its planar divergence can be balanced by variation of the out-of-plane component with z.
 
 ## 7. Curl of a curl
 
-**∇×(∇×F) = ∇(∇·F) − ∇²F**
-
-Type: vector → vector.
+∇×(∇×F) = ∇(∇·F) − ∇²F
 
 The double curl is not generally zero. It combines variation of the source strength with a subtraction of the componentwise curvature of the field.
 
-**Experiment:** F = (axy, bx², 0); double curl = (0,a−2b,0)
-
-Toggle the two right-hand terms. At a = 2b they cancel in this example; away from that setting the double curl points along y.
+**What to look for:** Toggle the two right-hand terms. At a = 2b they cancel in this example; away from that setting the double curl points along y.
 
 **Common confusion:** ∇²F means apply the scalar Laplacian to each Cartesian component. If div F = 0, double curl equals −∇²F, not zero in general.
 
-**Worked argument:**
+**Worked steps:**
 
 1. The x component expands to ∂ₓ∂ᵧFᵧ + ∂ₓ∂zFz − ∂ᵧ²Fₓ − ∂z²Fₓ.
 2. Add and subtract ∂ₓ²Fₓ.
@@ -192,27 +140,19 @@ Toggle the two right-hand terms. At a = 2b they cancel in this example; away fro
 
 **Predict:** If div F = 0, does curl curl F vanish?
 
-<details><summary>Explanation</summary>
-
-Only if ∇²F also vanishes. In general curl curl F = −∇²F for a divergence-free field.
-
-</details>
+**Explanation:** Only if ∇²F also vanishes. In general curl curl F = −∇²F for a divergence-free field.
 
 ## 8. Gradient of a product
 
-**∇(fg) = f∇g + g∇f**
-
-Type: scalar × scalar → vector.
+∇(fg) = f∇g + g∇f
 
 When you move, fg changes because g changes and because f changes. Each contribution is weighted by the value of the other factor.
 
-**Experiment:** f = x+ay; g = cos(bx)+y²+0.1z
-
-Turn off either contribution on the right. You will usually lose agreement. Click different points: a term can vanish locally without vanishing everywhere.
+**What to look for:** Turn off either contribution on the right. You will usually lose agreement. Click different points: a term can vanish locally without vanishing everywhere.
 
 **Common confusion:** ∇ is a differential operator, so it acts on both factors. You cannot treat it as an ordinary vector and distribute without the product rule.
 
-**Worked argument:**
+**Worked steps:**
 
 1. For each coordinate i, ∂ᵢ(fg) = f∂ᵢg + g∂ᵢf.
 2. Put the three component equations into one vector.
@@ -220,27 +160,19 @@ Turn off either contribution on the right. You will usually lose agreement. Clic
 
 **Predict:** Why are there two terms rather than just f∇g?
 
-<details><summary>Explanation</summary>
-
-Because f may change with position too. The g∇f term measures that additional change.
-
-</details>
+**Explanation:** Because f may change with position too. The g∇f term measures that additional change.
 
 ## 9. Divergence of a scaled field
 
-**∇·(fA) = f(∇·A) + (∇f)·A**
-
-Type: scalar × vector → scalar.
+∇·(fA) = f(∇·A) + (∇f)·A
 
 Scaling a field by a spatially varying f changes its flux balance in two ways: the original sources are weighted, and the weighting changes along the arrows.
 
-**Experiment:** f = 1+ax; A = (x−by, bx+y, 0)
-
-At a = 0, f is constant and the second term disappears. Increase a: the spatially changing weight makes a new contribution.
+**What to look for:** At a = 0, f is constant and the second term disappears. Increase a: the spatially changing weight makes a new contribution.
 
 **Common confusion:** A divergence-free A does not imply fA is divergence-free. The directional change of f along A can still create net flux.
 
-**Worked argument:**
+**Worked steps:**
 
 1. Expand ∑ᵢ ∂ᵢ(fAᵢ).
 2. Apply the ordinary product rule: ∑ᵢ f∂ᵢAᵢ + ∑ᵢ Aᵢ∂ᵢf.
@@ -248,27 +180,19 @@ At a = 0, f is constant and the second term disappears. Increase a: the spatiall
 
 **Predict:** When does a divergence-free field remain divergence-free after scaling?
 
-<details><summary>Explanation</summary>
-
-When A · ∇f = 0, so f does not change along the field direction.
-
-</details>
+**Explanation:** When A · ∇f = 0, so f does not change along the field direction.
 
 ## 10. Curl of a scaled field
 
-**∇×(fA) = f(∇×A) + (∇f)×A**
-
-Type: scalar × vector → vector.
+∇×(fA) = f(∇×A) + (∇f)×A
 
 The original circulation is weighted by f. A gradient of the weight across the flow also contributes circulation, through ∇f × A.
 
-**Experiment:** f = 1+ax; A = (x−by, bx+y, 0)
-
-Set b = 0: the original A has no curl, but weighting it unevenly can produce curl. Toggle each term and follow the dot/cross symbols.
+**What to look for:** Set b = 0: the original A has no curl, but weighting it unevenly can produce curl. Toggle each term and follow the dot/cross symbols.
 
 **Common confusion:** Cross-product order matters: ∇f × A is the negative of A × ∇f. This is a common sign mistake.
 
-**Worked argument:**
+**Worked steps:**
 
 1. The z component is ∂ₓ(fAᵧ) − ∂ᵧ(fAₓ).
 2. Expand: f(∂ₓAᵧ − ∂ᵧAₓ) + fₓAᵧ − fᵧAₓ.
@@ -276,27 +200,19 @@ Set b = 0: the original A has no curl, but weighting it unevenly can produce cur
 
 **Predict:** Can multiplying a curl-free field by f introduce curl?
 
-<details><summary>Explanation</summary>
-
-Yes, when ∇f × A is nonzero. A weight gradient across the flow introduces local shear.
-
-</details>
+**Explanation:** Yes, when ∇f × A is nonzero. A weight gradient across the flow introduces local shear.
 
 ## 11. Divergence of a cross product
 
-**∇·(A×B) = B·(∇×A) − A·(∇×B)**
-
-Type: vector × vector → scalar.
+∇·(A×B) = B·(∇×A) − A·(∇×B)
 
 The cross product builds a perpendicular field. Its sources are controlled by how A and B turn, projected onto the other field.
 
-**Experiment:** A = (0,0,1+axy); B = (x−by, bx+y, 0)
-
-Toggle B · curl A and −A · curl B separately. The minus sign is essential. At a = 0 the first term vanishes but the second can remain.
+**What to look for:** Toggle B · curl A and −A · curl B separately. The minus sign is essential. At a = 0 the first term vanishes but the second can remain.
 
 **Common confusion:** A and B are not interchangeable here. Swapping them changes A×B to −A×B and reverses the entire identity.
 
-**Worked argument:**
+**Worked steps:**
 
 1. Expand A×B into components, then take divergence.
 2. Collect derivatives of A into B · curl A.
@@ -304,27 +220,19 @@ Toggle B · curl A and −A · curl B separately. The minus sign is essential. A
 
 **Predict:** What changes if A and B are swapped?
 
-<details><summary>Explanation</summary>
-
-Both sides reverse sign, because the cross product is antisymmetric.
-
-</details>
+**Explanation:** Both sides reverse sign, because the cross product is antisymmetric.
 
 ## 12. Curl of a cross product
 
-**∇×(A×B) = A(∇·B) − B(∇·A) + (B·∇)A − (A·∇)B**
-
-Type: vector × vector → vector.
+∇×(A×B) = A(∇·B) − B(∇·A) + (B·∇)A − (A·∇)B
 
 Two terms describe source strengths, and two describe how one field changes as you move along the other. Keep these pairs separate in your mind.
 
-**Experiment:** A = (ay,x,z); B = (x,bz,y)
-
-Switch off terms one by one. Change the z slice: the in-plane arrows do not contain the whole 3D story.
+**What to look for:** Switch off terms one by one. Change the z slice: the in-plane arrows do not contain the whole 3D story.
 
 **Common confusion:** (B·∇)A is a directional derivative of A, not B times div A. Its i component is Bₓ∂ₓAᵢ + Bᵧ∂ᵧAᵢ + Bz∂zAᵢ.
 
-**Worked argument:**
+**Worked steps:**
 
 1. Use (A×B)ᵢ = εᵢⱼₖ AⱼBₖ and contract the two Levi-Civita symbols.
 2. The component result is ∂ⱼ(AᵢBⱼ − AⱼBᵢ).
@@ -332,27 +240,19 @@ Switch off terms one by one. Change the z slice: the in-plane arrows do not cont
 
 **Predict:** What does (B·∇)A mean geometrically?
 
-<details><summary>Explanation</summary>
-
-Move a small distance in direction B and measure how every component of A changes. It is a vector.
-
-</details>
+**Explanation:** Move a small distance in direction B and measure how every component of A changes. It is a vector.
 
 ## 13. Gradient of a dot product
 
-**∇(A·B) = (A·∇)B + (B·∇)A + A×(∇×B) + B×(∇×A)**
-
-Type: vector · vector → scalar → vector.
+∇(A·B) = (A·∇)B + (B·∇)A + A×(∇×B) + B×(∇×A)
 
 The dot product measures alignment and magnitude together. Its spatial gradient involves directional changes plus the curls needed to account for turning.
 
-**Experiment:** A = (ay,x,0); B = (x,by,0); A·B = (a+b)xy
-
-Change a: it changes curl A. In this example curl B is zero, so one term is always zero. The other three still reconstruct the full gradient.
+**What to look for:** Change a: it changes curl A. In this example curl B is zero, so one term is always zero. The other three still reconstruct the full gradient.
 
 **Common confusion:** This is not just two directional derivatives. Those alone generally miss the curl terms.
 
-**Worked argument:**
+**Worked steps:**
 
 1. Differentiate AⱼBⱼ with respect to coordinate i.
 2. Rewrite Aⱼ∂ᵢBⱼ as Aⱼ∂ⱼBᵢ + [A×curl B]ᵢ.
@@ -360,27 +260,19 @@ Change a: it changes curl A. In this example curl B is zero, so one term is alwa
 
 **Predict:** When do the two cross-with-curl terms disappear?
 
-<details><summary>Explanation</summary>
-
-When both A and B are curl-free, though individual cross terms can also vanish for other reasons such as parallel vectors.
-
-</details>
+**Explanation:** When both A and B are curl-free, though individual cross terms can also vanish for other reasons such as parallel vectors.
 
 ## 14. Divergence theorem
 
-**∯∂V F·n dS = ∭V ∇·F dV**
-
-Type: boundary integral = volume integral.
+∯∂V F·n dS = ∭V ∇·F dV
 
 Divide a region into tiny boxes. Flux on shared interior faces cancels, leaving only the outer boundary. The sum of the local source strengths equals outward flux.
 
-**Experiment:** F = (ax−by, bx+ay, 0); square side 2r; flux = 8ar²
-
-This is the planar analogue on a square. Resize the square: total flux scales with its area. Change b: rotation contributes no net outward flux.
+**What to look for:** This is the planar analogue on a square. Resize the square: total flux scales with its area. Change b: rotation contributes no net outward flux.
 
 **Common confusion:** Use a closed boundary and outward normals. This demo displays the 2D theorem; it is also a unit-height prism example because F has no z component or dependence.
 
-**Worked argument:**
+**Worked steps:**
 
 1. Each small box has outward flux ≈ divergence × its volume.
 2. Adjacent boxes have opposite normals on a shared face. Their internal fluxes cancel.
@@ -388,27 +280,19 @@ This is the planar analogue on a square. Resize the square: total flux scales wi
 
 **Predict:** If the square is twice as wide, how does total flux change here?
 
-<details><summary>Explanation</summary>
-
-It becomes four times as large, because the divergence is uniform and the planar area quadruples.
-
-</details>
+**Explanation:** It becomes four times as large, because the divergence is uniform and the planar area quadruples.
 
 ## 15. Stokes’ theorem
 
-**∮∂S F·dr = ∬S (∇×F)·n dS**
-
-Type: boundary integral = surface integral.
+∮∂S F·dr = ∬S (∇×F)·n dS
 
 Tile a surface with tiny loops. Shared edges are traversed in opposite directions and cancel. Only the outside edge remains.
 
-**Experiment:** F = (ax−by, bx+ay, 0); square side 2r; circulation = 8br²
-
-Resize the counterclockwise square. Circulation grows with area here. Change a: expansion contributes no circulation. The normal is +z.
+**What to look for:** Resize the counterclockwise square. Circulation grows with area here. Change a: expansion contributes no circulation. The normal is +z.
 
 **Common confusion:** Boundary orientation and surface normal must agree by the right-hand rule. Smoothness must hold on a neighbourhood of the entire spanning surface.
 
-**Worked argument:**
+**Worked steps:**
 
 1. Each small loop has circulation ≈ normal curl × its area.
 2. Shared edges cancel when the loops are summed.
@@ -416,27 +300,19 @@ Resize the counterclockwise square. Circulation grows with area here. Change a: 
 
 **Predict:** Why can’t you apply the ordinary disk version to the singular vortex in the next lesson?
 
-<details><summary>Explanation</summary>
-
-The vortex is undefined at the origin, so it is not smooth on the entire disk spanning the loop.
-
-</details>
+**Explanation:** The vortex is undefined at the origin, so it is not smooth on the entire disk spanning the loop.
 
 ## 16. The hole in the domain
 
-**curl F = 0 away from 0; ∮ F·dr = 2πb around 0**
-
-Type: local derivatives ≠ global topology.
+curl F = 0 away from 0; ∮ F·dr = 2πb around 0
 
 A field can turn around a missing point while having zero curl wherever it is defined. A loop around the hole cannot be shrunk to a point inside the domain.
 
-**Experiment:** F = b(−y,x,0)/(x²+y²), x²+y² > 0; a is unused
-
-Increase b: circulation around the origin increases, while the local curl away from the hole stays zero. The shaded disk is excluded from sampling; the true singularity is the origin.
+**What to look for:** Increase b: circulation around the origin increases, while the local curl away from the hole stays zero. The shaded disk is excluded from sampling; the true singularity is the origin.
 
 **Common confusion:** No contradiction: the field fails to be smooth at the origin, so Stokes’ theorem cannot use a disk that includes it. A simply connected domain is a sufficient condition for a smooth curl-free field to have a global potential.
 
-**Worked argument:**
+**Worked steps:**
 
 1. For F = b(−y,x,0)/(x²+y²), direct differentiation gives zero curl at r > 0.
 2. On a circle of radius R, F = (b/R)eθ and dr = R eθ dθ.
@@ -444,8 +320,124 @@ Increase b: circulation around the origin increases, while the local curl away f
 
 **Predict:** Does zero curl everywhere in a punctured plane guarantee path independence?
 
-<details><summary>Explanation</summary>
+**Explanation:** No. Loops that wind around the missing origin have nonzero circulation.
 
-No. Loops that wind around the missing origin have nonzero circulation.
+## 17. The mixed-partial test
 
-</details>
+F = (P,Q,0): ∂P/∂y = ∂Q/∂x ⇔ (curl F)z = 0
+
+If P and Q are the x and y slopes of one smooth potential, their cross derivatives must agree. On an open simply connected planar domain, this agreement also guarantees a global potential.
+
+**What to look for:** Here φ = ax²y + bxy² + y³ on the whole plane. Vary a and b: P = φx and Q = φy change, but Py and Qx remain equal. Contours show the potential, and arrows cross its contours perpendicularly.
+
+**Common confusion:** Use partial derivatives, since P and Q depend on both x and y. Py = Qx is a local condition; the vortex lesson explains the extra global domain requirement. In 3D all three pairs must agree.
+
+**Worked steps:**
+
+1. P = 2axy + by²; Q = ax² + 2bxy + 3y².
+2. Py = 2ax + 2by = Qx, so Qx − Py = 0.
+3. Integrate P in x: φ = ax²y + bxy² + h(y). Matching φy to Q gives h = y³ + C.
+
+**Predict:** For a = b = 1, what is the work from (0,0) to (1,1)?
+
+**Explanation:** 3 along every path: φ(1,1) − φ(0,0) = 3. The field is a global gradient on the whole plane.
+
+## 18. When the condition fails
+
+P = ax−by, Q = bx+ay: Qx−Py = 2b
+
+The a term is the gradient of a(x²+y²)/2. The b term adds rotation. Any nonzero b makes Py and Qx disagree, so no smooth scalar potential can generate this field even locally.
+
+**What to look for:** Set b = 0 to recover a potential. Increase b to create circulation. From (0,0) to (1,1), the two paths going along opposite pairs of square edges have work a+b and a−b.
+
+**Common confusion:** The residual measures agreement with the displayed equation Qx−Py = 2b. A zero residual does not certify that the field is conservative. Conservativity requires the curl itself to vanish.
+
+**Worked steps:**
+
+1. Py = −b and Qx = b, giving Qx − Py = 2b.
+2. The horizontal-then-vertical path gives a/2 + (b+a/2) = a+b.
+3. The vertical-then-horizontal path gives a/2 + (−b+a/2) = a−b.
+
+**Predict:** What is the difference between the work on those two paths?
+
+**Explanation:** 2b. It equals the counterclockwise circulation around the unit square and the integral of curl over its area.
+
+## 19. Gravity inside a sphere
+
+g = −∇Φ; div g = −4πGρ
+
+A uniform massive sphere pulls inward. Inside it, gravity grows linearly with distance and has constant negative divergence. Outside, it follows the inverse-square law and its 3D divergence is zero.
+
+**What to look for:** Units use G = 1. Slider a sets positive mass M = 0.1+a²; b sets radius R = 0.4+0.5(b+2). Move the probe across the surface or change the z slice. Contours show gravitational potential.
+
+**Common confusion:** The density jumps at the surface, so the second derivatives there are not classically defined. A finite-difference stencil straddling the surface averages the jump. The field is continuous, so there is no surface delta. The plot is a slice; divergence includes the z derivative.
+
+**Worked steps:**
+
+1. Inside, gi = −Mxi/R³, so ∂igi = −3M/R³ = −4πρ.
+2. Outside, gi = −Mxi/r³; its Jacobian trace cancels to zero.
+3. The potential is −M(3R²−r²)/(2R³) inside and −M/r outside. Differentiating gives the field on both sides.
+
+**Predict:** Is the gravity magnitude largest at the centre or at the surface?
+
+**Explanation:** At the surface. It is zero at the centre, rises linearly inside, and decreases as 1/r² outside.
+
+## 20. Gravity of a point mass
+
+g = −GM r/r³; curl g = 0 (r > 0)
+
+Point-mass gravity is the negative gradient of Φ = −GM/r. Its arrows point inward but have zero curl away from the mass. Work depends only on the starting and ending radii.
+
+**What to look for:** G = 1 and positive M = 0.1+a². Slider b is unused. Move the z slice to look above the mass. The shaded ball of radius 0.22 is a display exclusion; the true singularity is only r = 0.
+
+**Common confusion:** Unlike the punctured plane, three-dimensional space minus a point is simply connected. The global potential −GM/r exists. Zero divergence away from the origin does not remove the point source: div g = −4πGM δ³ distributionally.
+
+**Worked steps:**
+
+1. ∂iΦ = GMxi/r³, so gi = −GMxi/r³.
+2. ∂jgi = −GM(δij/r³ − 3xixj/r⁵) is symmetric in i,j.
+3. Its antisymmetric epsilon contraction is zero. Sphere flux is −4πGM despite zero ordinary divergence outside the source.
+
+**Predict:** Can this conservative field still do nonzero work on an open path?
+
+**Explanation:** Yes. Work per unit test mass is Φ(start) − Φ(end). Only the work around a closed path must vanish.
+
+## 21. Electric sources
+
+E = −∇V; div E = ρe (ε₀ = 1)
+
+Positive charge sends electric field outward; negative charge draws it inward. This smooth charge cloud removes the point singularity so you can inspect its source density everywhere.
+
+**What to look for:** Set signed total charge q = a and cloud size s = 0.2+0.25(b+2). Smaller s concentrates charge near the centre. The potential is V = q/(4π√(r²+s²)), with ε₀ = 1.
+
+**Common confusion:** This is a distributed charge cloud, not a point charge. Its density is 3qs²/[4π(r²+s²)^(5/2)] and extends to infinity. As s tends to zero it approaches the point-charge field away from the origin.
+
+**Worked steps:**
+
+1. Let u = r²+s². Differentiating V gives Ei = qxi/(4πu^(3/2)).
+2. Taking ∂iEi gives q[3u^(−3/2)−3r²u^(−5/2)]/(4π).
+3. The result is 3qs²/(4πu^(5/2)), the charge density. The Jacobian is symmetric, so curl E = 0.
+
+**Predict:** What changes when the sign of q reverses?
+
+**Explanation:** Potential, field and charge density all reverse sign. The geometric size of the cloud does not change.
+
+## 22. Straight flow with curl
+
+(v·∇)v = ∇(|v|²/2) − v×(curl v)
+
+A shear flow v = (ay,0,0) has straight streamlines, yet neighbouring rows travel at different speeds. Its curl is (0,0,−a). Its convective acceleration is zero because each particle stays on one row.
+
+**What to look for:** Change a to reverse or strengthen the shear. Slider b is unused. Switch off one right-hand term: the kinetic-energy gradient and v×curl v are individually nonzero but cancel.
+
+**Common confusion:** Curl is not a test of whether streamlines look curved. Also, zero convective acceleration does not mean zero velocity or zero curl. The material acceleration includes ∂v/∂t if the flow changes in time.
+
+**Worked steps:**
+
+1. v = (ay,0,0), so div v = 0 and curl v = (0,0,−a).
+2. (v·∇)v = ay ∂xv = 0.
+3. ∇(|v|²/2) = (0,a²y,0) and v×curl v = (0,a²y,0). Their difference is zero.
+
+**Predict:** Does a paddle wheel detect rotation in a straight shear flow?
+
+**Explanation:** Yes. The upper and lower sides experience different velocities, giving nonzero local circulation. Vorticity is −a along z.
