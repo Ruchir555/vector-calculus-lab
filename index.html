@@ -4,8 +4,8 @@
   <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="description" content="Learn vector calculus identities through interactive fields, sliders, worked steps, and geometric intuition.">
   <title>Vector Calculus Lab</title>
-  <link rel="stylesheet" href="style.css?v=1.0.2">
-  <script src="math.js?v=1.0.2" defer></script><script src="lessons.js?v=1.0.2" defer></script><script src="app.js?v=1.0.2" defer></script>
+  <link rel="stylesheet" href="style.css?v=1.0.3">
+  <script src="math.js?v=1.0.3" defer></script><script src="lessons.js?v=1.0.3" defer></script><script src="app.js?v=1.0.3" defer></script>
 </head>
 <body>
 <a class="skip" href="#lesson">Skip to lesson</a>
@@ -30,7 +30,7 @@
         <figure><figcaption><span id="left-title"></span><span class="pill" id="left-type"></span></figcaption><canvas id="left" width="600" height="440" tabindex="0" aria-label="Left field plot. Click to move the probe. Arrow keys move the probe."></canvas><div class="plot-key" id="left-key"></div></figure>
         <figure><figcaption><span id="right-title">Right-hand side sum</span><span class="pill" id="right-type"></span></figcaption><canvas id="right" width="600" height="440" tabindex="0" aria-label="Right field plot. Click to move the probe. Arrow keys move the probe."></canvas><div class="plot-key" id="right-key"></div></figure>
       </div>
-      <p class="caption">Click either plot to move the probe. Arrow lengths use a fixed scale (0.18 coordinate units per field unit), capped for readability. A grey ring marks a capped arrow. Dot/cross size shows the z component. Colours rescale per panel; compare the numerical values below.</p>
+      <p class="caption">Click either plot to move the probe. Arrow lengths use a fixed scale (0.18 coordinate units per field unit), capped for readability. A grey ring marks a capped arrow. Dot/cross size shows the z component; subpixel glyphs are omitted. Colours rescale per panel; compare the numerical values below.</p>
       <fieldset id="terms"><legend>Build the right-hand side · switch contributions on and off</legend><div id="term-options"></div></fieldset>
       <div class="readouts" aria-live="polite">
         <div><small>PROBE (x, y, z)</small><strong id="point"></strong></div>

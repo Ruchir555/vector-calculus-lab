@@ -52,9 +52,10 @@ function arrow(ctx,x,y,u,v){
 }
 function symbol(ctx,x,y,value){
   if(Math.abs(value)<1e-7)return;
-  const size=3+Math.min(7,Math.sqrt(Math.abs(value))*3),X=sx(x),Y=sy(y);
+  const size=Math.min(10,Math.sqrt(Math.abs(value))*5),X=sx(x),Y=sy(y);
+  if(size<0.5)return;
   ctx.strokeStyle=value>0?'#2973a4':'#be7734';ctx.fillStyle=ctx.strokeStyle;ctx.lineWidth=1.4;ctx.beginPath();ctx.arc(X,Y,size,0,2*Math.PI);ctx.stroke();
-  if(value>0){ctx.beginPath();ctx.arc(X,Y,1.6,0,2*Math.PI);ctx.fill();}
+  if(value>0){ctx.beginPath();ctx.arc(X,Y,Math.min(1.6,size/3),0,2*Math.PI);ctx.fill();}
   else{ctx.beginPath();ctx.moveTo(X-size*.5,Y-size*.5);ctx.lineTo(X+size*.5,Y+size*.5);ctx.moveTo(X-size*.5,Y+size*.5);ctx.lineTo(X+size*.5,Y-size*.5);ctx.stroke();}
 }
 function contours(ctx,f){
