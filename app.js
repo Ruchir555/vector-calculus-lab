@@ -124,7 +124,7 @@ function draw(){
   const source=$('view').value==='source',leftFn=source?model.source:model.lhs,leftType=source?model.sourceType:outputType;
   $('left-title').textContent=source?'Field being differentiated':'Left-hand side result';$('left-type').textContent=leftType;
   $('right-type').textContent=outputType;$('right-title').textContent=enabled.every(Boolean)?'Right-hand side sum':'Selected contributions (partial sum)';
-  panel($('left'),leftFn,leftType,model.background,'left-key',source&&leftType==='scalar');
+  panel($('left'),leftFn,leftType,model.background,'left-key',false);
   panel($('right'),selected,outputType,outputType==='vector'?model.background:null,'right-key');
   $('point').textContent=fmt(probe);$('lhs').textContent=lhs===null?'Excluded / undefined':fmt(lhs);
   $('rhs').textContent=displayed===null?'Excluded / undefined':fmt(displayed);

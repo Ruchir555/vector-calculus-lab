@@ -8,14 +8,14 @@
   const flow=(a,b)=>p=>[a*p[0]-b*p[1],b*p[0]+a*p[1],0];
   const terms=(...items)=>items.map(([label,fn])=>({label,fn}));
   const lessons=[
-    {id:'gradient',group:'Start here',title:'Gradient',tag:'A scalar becomes an arrow',formula:'∇f = (∂ₓf, ∂ᵧf, ∂zf)',types:'scalar → vector',
+    {id:'gradient',group:'Start here',title:'Gradient',tag:'A scalar becomes an arrow',formula:'∇f = (∂f/∂x, ∂f/∂y, ∂f/∂z)',types:'scalar → vector',
       intuition:'Imagine f as height. The gradient points towards the steepest increase. Its magnitude is the steepest slope, not the height itself.',
       observe:'Change a or b to turn the bowl into a saddle. Click a point: the arrow should cross the local contour at a right angle. At a stationary point the gradient vanishes even if the height is nonzero.',
       trap:'A gradient is not a path and not a velocity by definition. The arrows are a field of local slopes. The plot shows its x–y components; the readout also includes z.',
       proof:['A small displacement gives Δf ≈ ∇f · Δr.','Along a unit direction u, the slope is ∇f · u.','This is largest when u points along ∇f. A contour has Δf = 0, so its tangent is perpendicular to the gradient.'],
       question:'If you double f everywhere, what happens to its gradient?',answer:'Its gradient doubles. The contour shapes stay the same, but their values and slopes change.',
       build(a,b){const f=scalar(a,b);return {example:'f = a x² + b y² + ½xy + 0.2z²',source:f,sourceType:'scalar',lhs:p=>grad(f,p),rhs:terms(['∇f',p=>grad(f,p)]),background:f,contours:true};}},
-    {id:'divergence',group:'Start here',title:'Divergence',tag:'Net outward flow per volume',formula:'∇·F = ∂ₓFₓ + ∂ᵧFᵧ + ∂zFz',types:'vector → scalar',
+    {id:'divergence',group:'Start here',title:'Divergence',tag:'Net outward flow per volume',formula:'∇·F = ∂Fₓ/∂x + ∂Fᵧ/∂y + ∂Fz/∂z',types:'vector → scalar',
       intuition:'Put a tiny box around a point. Divergence asks whether more field flows out than in, divided by the box volume. A fast uniform flow still has zero divergence.',
       observe:'a controls expansion; b controls rotation. Set a = 0 and increase b: the arrows rotate, but there is no net outward flux. The orange square is a finite area probe.',
       trap:'Divergence is not the arrow length. It measures how the field changes across opposite faces. Here Fz = 0 and there is no z dependence, so 3D divergence equals the planar divergence.',
