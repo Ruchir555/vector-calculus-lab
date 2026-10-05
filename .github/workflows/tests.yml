@@ -1,0 +1,14 @@
+name: Mathematical checks
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - name: Run independent derivative and identity checks
+        run: node --test math.test.cjs
